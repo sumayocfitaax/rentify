@@ -7,7 +7,7 @@ const adminMiddleware = require('../middleWare/adminMiddleWare.js')
 
 router.post('/property/add', authMiddleware,uploadImage.single('images'), propertyController.addProperty);
 
-// router.get('/my-properties', authMiddleware, propertyController.getMyProperties);
+router.get('/my-properties', authMiddleware, propertyController.getMyProperties);
 
 router.get('/properties/get', propertyController.getAllProperties);
 router.get('/property/get/:id', propertyController.getPropertyById);
