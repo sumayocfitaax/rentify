@@ -101,19 +101,19 @@ exports.getPropertyById = async (req, res) => {
   }
 };
 
-// exports.deleteProperty = async (req, res) => {
-//   try {
-//     const property = await propertyModel.findById(req.params.id);
-//     if(!property){
-//       res.json({success: false, message: "property not found"})
-//     }
-//     await propertyModel.findByIdAndDelete(req.params.id);
-//     res.json({success: true, message: "property deleted successfully"})
-//   } catch (error) {
-//     console.log(error);
-//     res.json({success: false, message: error.message})
-//   }
-// }
+exports.deleteProperty = async (req, res) => {
+  try {
+    const property = await propertyModel.findById(req.params.id);
+    if(!property){
+      res.json({success: false, message: "property not found"})
+    }
+    await propertyModel.findByIdAndDelete(req.params.id);
+    res.json({success: true, message: "property deleted successfully"})
+  } catch (error) {
+    console.log(error);
+    res.json({success: false, message: error.message})
+  }
+}
 
 exports.getPropertyStats = async (req, res) => {
   try {
@@ -221,36 +221,36 @@ exports.updateProperty = async (req, res) => {
   }
 };
 
-exports.deleteProperty = async (req, res) => {
-  try {
+// exports.deleteProperty = async (req, res) => {
+//   try {
 
-    const property = await propertyModel.findById(req.params.id);
+//     const property = await propertyModel.findById(req.params.id);
 
-    if (!property) {
-      return res.json({
-        success: false,
-        message: "Property not found"
-      });
-    }
+//     if (!property) {
+//       return res.json({
+//         success: false,
+//         message: "Property not found"
+//       });
+//     }
 
-    if (property.ownerId.toString() !== req.user.id) {
-      return res.json({
-        success: false,
-        message: "Unauthorized"
-      });
-    }
+//     if (property.ownerId.toString() !== req.user.id) {
+//       return res.json({
+//         success: false,
+//         message: "Unauthorized"
+//       });
+//     }
 
-    await propertyModel.findByIdAndDelete(req.params.id);
+//     await propertyModel.findByIdAndDelete(req.params.id);
 
-    res.json({
-      success: true,
-      message: "Property deleted"
-    });
+//     res.json({
+//       success: true,
+//       message: "Property deleted"
+//     });
 
-  } catch (error) {
-    res.json({
-      success: false,
-      message: error.message
-    });
-  }
-};
+//   } catch (error) {
+//     res.json({
+//       success: false,
+//       message: error.message
+//     });
+//   }
+// };
