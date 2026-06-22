@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const propertyController = require('../controller/propertyController.js')
 const uploadImage = require('../middleWare/multer.js')
-const authMiddleware = require('../middleware/authMiddleware');
+const authMiddleware = require('../middleWare/authMiddleware.js')
 const adminMiddleware = require('../middleWare/adminMiddleWare.js')
 
 router.post('/property/add', authMiddleware,uploadImage.single('images'), propertyController.addProperty);
 
-router.get('/my-properties', authMiddleware, propertyController.getMyProperties);
+console.log(__dirname);
+
 
 router.get('/properties/get', propertyController.getAllProperties);
 router.get('/property/get/:id', propertyController.getPropertyById);
